@@ -1,0 +1,4 @@
+
+- lazy.nvim
+- lsp-zero
+
