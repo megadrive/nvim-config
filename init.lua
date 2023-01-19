@@ -61,26 +61,33 @@ local plugins = {
     },
     config = function()
       local lsp = require("lsp-zero")
-      lsp.preset("recommended")
-      lsp.setup()
-      vim.diagnostic.config({
-        {
-          virtual_text = true,
-          signs = true,
-          update_in_insert = false,
-          underline = true,
-          severity_sort = true,
-          float = {
-            focusable = false,
-            style = 'minimal',
-            border = 'rounded',
-            source = 'always',
-            header = '',
-            prefix = '',
-          },
+      -- lsp.preset("recommended")
+      lsp.set_preferences({
+        suggest_lsp_servers = true,
+        setup_servers_on_start = true,
+        set_lsp_keymaps = true,
+        configure_diagnostics = false,
+        cmp_capabilities = true,
+        manage_nvim_cmp = true,
+        call_servers = 'local',
+        sign_icons = {
+          error = '✘',
+          warn = '▲',
+          hint = '⚑',
+          info = ''
         }
       })
+      lsp.setup()
     end
+  },
+
+  -- Diagnostics
+  {
+    "folke/trouble.nvim",
+    dependencies = {
+      { "folke/lsp-colors.nvim", config = true, },
+    },
+    config = true,
   },
   
   { -- Highlight, edit, and navigate code
@@ -93,7 +100,7 @@ local plugins = {
     },
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = {"typescript", "lua", "vim"},
+        ensure_installed = {"tsx", "typescript", "lua", "vim"},
         sync_install = false,
         auto_install = true,
         highlight = {
@@ -119,7 +126,7 @@ local plugins = {
     config = true,
   },
 
-  -- "gc" to comment visual regions/lines
+  -- "<leader>gc" to comment visual regions/lines
   {
     'numToStr/Comment.nvim',
     config = true,
@@ -131,7 +138,10 @@ local plugins = {
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
-    dependencies = { 'nvim-lua/plenary.nvim', lazy = false }
+    dependencies = { 'nvim-lua/plenary.nvim', lazy = false },
+    config = function()
+
+    end
   },
 
   {
@@ -145,11 +155,11 @@ local plugins = {
 }
 
 -- vim settings
-require("opts").setup {}
-
--- keybinds
-require("keybinds").setup {}
+require("opts").setup()
 
 -- lazy setup last
 require("lazy").setup(plugins)
+
+-- keybinds
+require("keybinds").setup()
 
