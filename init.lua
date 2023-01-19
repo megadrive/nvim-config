@@ -61,6 +61,7 @@ local plugins = {
     },
     config = function()
       local lsp = require("lsp-zero")
+
       -- lsp.preset("recommended")
       lsp.set_preferences({
         suggest_lsp_servers = true,
@@ -77,6 +78,9 @@ local plugins = {
           info = ''
         }
       })
+
+      lsp.nvim_workspace()
+
       lsp.setup()
     end
   },
@@ -89,7 +93,7 @@ local plugins = {
     },
     config = true,
   },
-  
+
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = function()
@@ -139,9 +143,6 @@ local plugins = {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim', lazy = false },
-    config = function()
-
-    end
   },
 
   {
