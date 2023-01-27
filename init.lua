@@ -18,11 +18,10 @@ local plugins = {
   -- themes
   {
     'pineapplegiant/spaceduck',
-    enabled = false,
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme spaceduck]])
+      -- vim.cmd([[colorscheme spaceduck]])
     end,
     dependencies = {
       'sheerun/vim-polyglot'
@@ -34,7 +33,15 @@ local plugins = {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme tokyonight]])
+      --vim.cmd([[colorscheme tokyonight-night]])
+    end
+  },
+
+  {
+    'nyoom-engineering/oxocarbon.nvim',
+    config = function()
+      vim.opt.background = "dark"
+      vim.cmd([[colorscheme oxocarbon]])
     end
   },
 
