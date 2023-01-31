@@ -33,7 +33,16 @@ local plugins = {
     lazy = false,
     priority = 1000,
     config = function()
-      --vim.cmd([[colorscheme tokyonight-night]])
+      -- vim.cmd([[colorscheme tokyonight-night]])
+    end
+  },
+
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme catppuccin-mocha]])
     end
   },
 
@@ -41,7 +50,7 @@ local plugins = {
     'nyoom-engineering/oxocarbon.nvim',
     config = function()
       vim.opt.background = "dark"
-      vim.cmd([[colorscheme oxocarbon]])
+      -- vim.cmd([[colorscheme oxocarbon]])
     end
   },
 
