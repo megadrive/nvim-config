@@ -59,21 +59,21 @@ local plugins = {
     'VonHeikemen/lsp-zero.nvim',
     dependencies = {
       -- LSP Support
-      {'neovim/nvim-lspconfig'},
-      {'williamboman/mason.nvim'},
-      {'williamboman/mason-lspconfig.nvim'},
+      { 'neovim/nvim-lspconfig' },
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
 
       -- Autocompletion
-      {'hrsh7th/nvim-cmp'},
-      {'hrsh7th/cmp-buffer'},
-      {'hrsh7th/cmp-path'},
-      {'saadparwaiz1/cmp_luasnip'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'hrsh7th/cmp-nvim-lua'},
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-nvim-lua' },
 
       -- Snippets
-      {'L3MON4D3/LuaSnip'},
-      {'rafamadriz/friendly-snippets'},
+      { 'L3MON4D3/LuaSnip' },
+      { 'rafamadriz/friendly-snippets' },
     },
     config = function()
       local lsp = require("lsp-zero")
@@ -83,7 +83,7 @@ local plugins = {
         suggest_lsp_servers = true,
         setup_servers_on_start = true,
         set_lsp_keymaps = true,
-        configure_diagnostics = false,
+        configure_diagnostics = false, -- use trouble instead
         cmp_capabilities = true,
         manage_nvim_cmp = true,
         call_servers = 'local',
@@ -94,6 +94,23 @@ local plugins = {
           info = ''
         }
       })
+
+      -- If you want insert `(` after select function or method item
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      local cmp = require('cmp')
+      cmp.event:on(
+        'confirm_done',
+        cmp_autopairs.on_confirm_done()
+      )
+
+      lsp.on_attach(function(_, bufnr)
+        local opts = { buffer = bufnr }
+        local bind = vim.keymap.set
+
+        bind('i', '<C-Space>', require('cmp').mapping.complete(), opts)
+        bind('v', '=', '<cmd>LspZeroFormat<CR><C-C>')
+        bind('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>')
+      end)
 
       lsp.nvim_workspace()
 
@@ -120,7 +137,7 @@ local plugins = {
     },
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = {"tsx", "typescript", "lua", "vim"},
+        ensure_installed = { "tsx", "typescript", "lua", "vim" },
         sync_install = false,
         auto_install = true,
         highlight = {
@@ -159,6 +176,21 @@ local plugins = {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim', lazy = false },
+    config = function()
+      local actions = require("telescope.actions")
+      local trouble = require("trouble.providers.telescope")
+
+      local telescope = require("telescope")
+
+      telescope.setup {
+        defaults = {
+          mappings = {
+            i = { ["<c-t>"] = trouble.open_with_trouble },
+            n = { ["<c-t>"] = trouble.open_with_trouble },
+          },
+        },
+      }
+    end,
   },
 
   {
@@ -168,6 +200,11 @@ local plugins = {
       vim.o.timeoutlen = 300
       require("which-key").setup()
     end
+  },
+
+  {
+    "windwp/nvim-autopairs",
+    config = true,
   },
 }
 
