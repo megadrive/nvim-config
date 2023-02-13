@@ -16,44 +16,55 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
 
   -- themes
+  --
+  -- {
+  --   'pineapplegiant/spaceduck',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     -- vim.cmd([[colorscheme spaceduck]])
+  --   end,
+  --   dependencies = {
+  --     'sheerun/vim-polyglot'
+  --   },
+  -- },
+  --
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     -- vim.cmd([[colorscheme tokyonight-night]])
+  --   end
+  -- },
+  --
+  -- {
+  --   "catppuccin/nvim",
+  --   name = "catppuccin",
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd([[colorscheme catppuccin-mocha]])
+  --   end
+  -- },
+  --
+  -- {
+  --   'nyoom-engineering/oxocarbon.nvim',
+  --   config = function()
+  --     vim.opt.background = "dark"
+  --     -- vim.cmd([[colorscheme oxocarbon]])
+  --   end
+  -- },
+  --
+  --
   {
-    'pineapplegiant/spaceduck',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- vim.cmd([[colorscheme spaceduck]])
-    end,
-    dependencies = {
-      'sheerun/vim-polyglot'
-    },
-  },
-
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- vim.cmd([[colorscheme tokyonight-night]])
-    end
-  },
-
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    config = function()
-      vim.cmd([[colorscheme catppuccin-mocha]])
-    end
-  },
-
-  {
-    'nyoom-engineering/oxocarbon.nvim',
+    'sainnhe/sonokai',
     config = function()
       vim.opt.background = "dark"
-      -- vim.cmd([[colorscheme oxocarbon]])
+      vim.cmd([[colorscheme sonokai]])
     end
   },
 
+  --
   -- lsp
   {
     'VonHeikemen/lsp-zero.nvim',
@@ -115,6 +126,29 @@ local plugins = {
       lsp.nvim_workspace()
 
       lsp.setup()
+    end
+  },
+
+  {
+    'MunifTanjim/prettier.nvim',
+    dependencies = {
+      'jose-elias-alvarez/null-ls.nvim',
+    },
+    config = function ()
+      local prettier = require("prettier")
+      prettier.setup({
+        filetypes = {
+          "css",
+          "html",
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "json",
+          "yaml",
+        },
+        config_precedence = "prefer-file",
+      })
     end
   },
 
