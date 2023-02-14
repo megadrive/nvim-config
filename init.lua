@@ -106,6 +106,15 @@ local plugins = {
         }
       })
 
+      lsp.setup_nvim_cmp({
+        sources = {
+          {name = 'path'},
+          {name = 'nvim_lsp', keyword_length = 1},
+          {name = 'buffer', keyword_length = 1},
+          {name = 'luasnip', keyword_length = 1},
+        }
+      })
+
       -- If you want insert `(` after select function or method item
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       local cmp = require('cmp')
