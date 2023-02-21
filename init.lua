@@ -58,6 +58,7 @@ local plugins = {
   --
   {
     'sainnhe/sonokai',
+    priority = 1000,
     config = function()
       vim.opt.background = "dark"
       vim.cmd([[colorscheme sonokai]])
@@ -198,6 +199,19 @@ local plugins = {
     dependencies = {
       "kyazdani42/nvim-web-devicons",
     },
+  },
+
+  {
+    'NvChad/nvim-colorizer.lua',
+    config = true,
+  },
+
+  {
+    'echasnovski/mini.map',
+    config = function()
+      require('mini.map').setup()
+    end,
+    version = false,
   },
 
   -- Add indentation guides even on blank lines
