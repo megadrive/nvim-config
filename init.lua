@@ -207,11 +207,12 @@ local plugins = {
   },
 
   {
-    'echasnovski/mini.map',
+    'gorbit99/codewindow.nvim',
     config = function()
-      require('mini.map').setup()
+      local codewindow = require('codewindow')
+      codewindow.setup()
+      codewindow.apply_default_keybinds()
     end,
-    version = false,
   },
 
   -- Add indentation guides even on blank lines
