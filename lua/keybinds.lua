@@ -2,20 +2,30 @@ local M = {}
 
 M.setup = function()
   local set = vim.keymap.set
+  vim.keymap.set("i", "jk", "<C-c>"); -- jk to leave insert mode
 
-  set("i", "jk", "<C-c>"); -- jk to leave insert mode
+  local wk = require("which-key")
+  wk.register({
+    q = { "<cmd>db<CR>", "Close current buffer"},
+    Q = { "<cmd>db|e#<CR>", "Close all other buffers"},
+    p = {
+      v = { "<cmd>Ex<CR>", "Open netrw" },
+    },
 
-  set("n", "<leader>q", "<cmd>bd<CR>"); -- close a buffer
-  set("n", "<leader>Q", "<cmd>bd|e#<CR>"); -- close all buffers but the open one
+    f = {
+      name = "Telescope",
+      f = {"<cmd>Telescope find_files<CR>", "Fuzzy-find all files"},
+      F = {"<cmd>Telescope git_files<CR>", "Fuzzy-find git files"},
+      b = {"<cmd>Telescope buffers<CR>", "Fuzzy-find buffer"},
+      F = {"<cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy-find in current buffer"},
+    },
 
-  -- netrw
-  set("n", "<leader>pv", "<cmd>Ex<CR>");
-
-  -- Telescope
-  set("n", "<leader>fF", "<cmd>Telescope git_files<CR>");
-  set("n", "<leader>ff", "<cmd>Telescope find_files<CR>");
-  set("n", "<leader>fb", "<cmd>Telescope buffers<CR>");
-  set("n", "<leader>fs", "<cmd>Telescope current_buffer_fuzzy_find<CR>");
+    t = {
+      name = "Trouble diagnostics",
+      t = {"<cmd>Trouble<CR>", "Toggle Trouble"},
+      r = {"<cmd>TroubleRefresh<CR>", "Refresh Trouble"},
+    }
+  }, { prefix = '<leader>' })
 
   -- Trouble
   local trouble_opts = { silent = true, noremap = true }
