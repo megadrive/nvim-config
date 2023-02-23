@@ -211,7 +211,9 @@ local plugins = {
     'gorbit99/codewindow.nvim',
     config = function()
       local codewindow = require('codewindow')
-      codewindow.setup()
+      codewindow.setup({
+        auto_enable = true,
+      })
       codewindow.apply_default_keybinds()
     end,
   },
