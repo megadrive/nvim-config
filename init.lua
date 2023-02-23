@@ -194,11 +194,12 @@ local plugins = {
 
   -- Fancier statusline
   {
-    'nvim-lualine/lualine.nvim',
-    config = true,
-    dependencies = {
-      "kyazdani42/nvim-web-devicons",
-    },
+    'itchyny/lightline.vim',
+    config = function ()
+      vim.g.lightline = {
+        colorscheme = 'wombat'
+      }
+    end,
   },
 
   {
