@@ -69,6 +69,7 @@ local plugins = {
   -- lsp
   {
     'VonHeikemen/lsp-zero.nvim',
+    branch = "1.x",
     dependencies = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },
@@ -116,14 +117,6 @@ local plugins = {
         }
       })
 
-      -- If you want insert `(` after select function or method item
-      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-      local cmp = require('cmp')
-      cmp.event:on(
-        'confirm_done',
-        cmp_autopairs.on_confirm_done()
-      )
-
       lsp.on_attach(function(_, bufnr)
         local opts = { buffer = bufnr }
         local bind = vim.keymap.set
@@ -159,8 +152,43 @@ local plugins = {
         },
         config_precedence = "prefer-file",
       })
+
+      local null_ls = require("null-ls")
+
+      local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
+      local event = "BufWritePre" -- or "BufWritePost"
+      local async = event == "BufWritePost"
+
+      null_ls.setup({
+        on_attach = function(client, bufnr)
+          if client.supports_method("textDocument/formatting") then
+            vim.keymap.set("n", "<Leader>f", function()
+              vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+            end, { buffer = bufnr, desc = "[lsp] format" })
+
+            -- format on save
+            vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
+            vim.api.nvim_create_autocmd(event, {
+              buffer = bufnr,
+              group = group,
+              callback = function()
+                vim.lsp.buf.format({ bufnr = bufnr, async = async })
+              end,
+              desc = "[lsp] format on save",
+            })
+          end
+
+          if client.supports_method("textDocument/rangeFormatting") then
+            vim.keymap.set("x", "<Leader>f", function()
+              vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+            end, { buffer = bufnr, desc = "[lsp] format" })
+          end
+        end,
+      })
     end
   },
+
+  "nvim-tree/nvim-web-devicons",
 
   -- Diagnostics
   {
@@ -171,7 +199,7 @@ local plugins = {
     config = true,
   },
 
-  { -- Highlight, edit, and navigate code
+  { -- Highlight, edit, and navigate codeKomodoHype!
     'nvim-treesitter/nvim-treesitter',
     build = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })

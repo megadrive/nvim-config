@@ -22,9 +22,11 @@ M.setup = function()
 
     t = {
       name = "Trouble diagnostics",
-      t = {"<cmd>Trouble<CR>", "Toggle Trouble"},
+      t = {"<cmd>TroubleToggle<CR>", "Toggle Trouble"},
       r = {"<cmd>TroubleRefresh<CR>", "Refresh Trouble"},
-    }
+    },
+
+    F = { "<cmd>LspZeroFormat<CR>", "LSP Format" },
   }, { prefix = '<leader>' })
 
   -- Trouble
