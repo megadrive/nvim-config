@@ -29,14 +29,14 @@ local plugins = {
   --   },
   -- },
   --
-  -- {
-  --   "folke/tokyonight.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     -- vim.cmd([[colorscheme tokyonight-night]])
-  --   end
-  -- },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme tokyonight-moon]])
+    end
+  },
   --
   -- {
   --   "catppuccin/nvim",
@@ -50,7 +50,6 @@ local plugins = {
   -- {
   --   'nyoom-engineering/oxocarbon.nvim',
   --   config = function()
-  --     vim.opt.background = "dark"
   --     -- vim.cmd([[colorscheme oxocarbon]])
   --   end
   -- },
@@ -60,8 +59,7 @@ local plugins = {
     'sainnhe/sonokai',
     priority = 1000,
     config = function()
-      vim.opt.background = "dark"
-      vim.cmd([[colorscheme sonokai]])
+      -- vim.cmd([[colorscheme sonokai]])
     end
   },
 
@@ -222,12 +220,8 @@ local plugins = {
 
   -- Fancier statusline
   {
-    'itchyny/lightline.vim',
-    config = function ()
-      vim.g.lightline = {
-        colorscheme = 'wombat'
-      }
-    end,
+    'nvim-lualine/lualine.nvim',
+    config = true
   },
 
   {
@@ -241,6 +235,8 @@ local plugins = {
       local codewindow = require('codewindow')
       codewindow.setup({
         auto_enable = true,
+        minimap_width = 4,
+        width_multiplier = 8,
       })
       codewindow.apply_default_keybinds()
     end,
@@ -306,3 +302,5 @@ require("lazy").setup(plugins)
 -- keybinds
 require("keybinds").setup()
 
+-- set the background, do last as colorschemes don't love it
+vim.opt.background = "dark"
