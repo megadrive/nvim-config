@@ -14,6 +14,10 @@ vim.opt.rtp:prepend(lazypath)
 
 -- install plugins
 local plugins = {
+  -- github copilot
+  {
+    'github/copilot.vim',
+  },
 
   -- themes
   --

@@ -31,7 +31,7 @@ M.setup = function()
 
   -- Trouble
   local trouble_opts = { silent = true, noremap = true }
-  set("n", "<leader>tt", "<cmd>Trouble<CR>", trouble_opts)
+  set("n", "<leader>tt", "<cmd>TroubleToggle<CR>", trouble_opts)
   set("n", "<leader>tr", "<cmd>TroubleRefresh<CR>", trouble_opts)
 end
 
