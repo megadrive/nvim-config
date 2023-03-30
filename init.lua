@@ -20,47 +20,41 @@ local plugins = {
   },
 
   -- themes
-  --
-  -- {
-  --   'pineapplegiant/spaceduck',
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     -- vim.cmd([[colorscheme spaceduck]])
-  --   end,
-  --   dependencies = {
-  --     'sheerun/vim-polyglot'
-  --   },
-  -- },
-  --
+
+  {
+    'pineapplegiant/spaceduck',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- vim.cmd([[colorscheme spaceduck]])
+    end,
+    dependencies = {
+      'sheerun/vim-polyglot'
+    },
+  },
+
   {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme tokyonight-moon]])
+      -- vim.cmd([[colorscheme tokyonight-moon]])
     end
   },
-  --
-  -- {
-  --   "catppuccin/nvim",
-  --   name = "catppuccin",
-  --   priority = 1000,
-  --   config = function()
-  --     vim.cmd([[colorscheme catppuccin-mocha]])
-  --   end
-  -- },
-  --
-  -- {
-  --   'nyoom-engineering/oxocarbon.nvim',
-  --   config = function()
-  --     -- vim.cmd([[colorscheme oxocarbon]])
-  --   end
-  -- },
-  --
-  --
+
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme catppuccin]])
+    end
+  },
+
   {
     'sainnhe/sonokai',
+    lazy = false,
     priority = 1000,
     config = function()
       -- vim.cmd([[colorscheme sonokai]])
@@ -71,7 +65,7 @@ local plugins = {
   -- lsp
   {
     'VonHeikemen/lsp-zero.nvim',
-    branch = "1.x",
+    branch = "v1.x",
     dependencies = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },
@@ -201,7 +195,7 @@ local plugins = {
     config = true,
   },
 
-  { -- Highlight, edit, and navigate codeKomodoHype!
+  { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
