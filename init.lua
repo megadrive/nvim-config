@@ -1,3 +1,6 @@
+-- Note for future me: if you are getting shitloads of errors,
+-- make neovim from source.
+--
 -- bootstrap lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
