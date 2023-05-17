@@ -4,6 +4,12 @@ M.setup = function()
   local set = vim.keymap.set
   vim.keymap.set("i", "jk", "<C-c>"); -- jk to leave insert mode
 
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer = 0})
+  vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer = 0})
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer = 0})
+  vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, {buffer = 0})
+  vim.keymap.set("n", "<leader>db", vim.diagnostic.goto_prev, {buffer = 0})
+
   local wk = require("which-key")
   wk.register({
     q = { "<cmd>db<CR>", "Close current buffer"},
@@ -20,8 +26,9 @@ M.setup = function()
       F = {"<cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy-find in current buffer"},
     },
 
-    t = {
+    d = {
       name = "Trouble diagnostics",
+      f = {name = "Goto diagnostic"},
       t = {"<cmd>TroubleToggle<CR>", "Toggle Trouble"},
       r = {"<cmd>TroubleRefresh<CR>", "Refresh Trouble"},
     },
