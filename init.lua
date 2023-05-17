@@ -19,18 +19,19 @@ local plugins = {
     'github/copilot.vim',
   },
 
-  -- themes
-
+  -- leap.nvim, easier movements
   {
-    'pineapplegiant/spaceduck',
+    'ggandor/leap.nvim',
+  },
+
+  -- themes
+  {
+    "rebelot/kanagawa.nvim",
     lazy = false,
-    priority = 1000,
+    priority = false,
     config = function()
-      -- vim.cmd([[colorscheme spaceduck]])
+      vim.cmd[[colorscheme kanagawa]]
     end,
-    dependencies = {
-      'sheerun/vim-polyglot'
-    },
   },
 
   {
@@ -48,7 +49,7 @@ local plugins = {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme catppuccin]])
+      -- vim.cmd([[colorscheme catppuccin]])
     end
   },
 
@@ -58,6 +59,18 @@ local plugins = {
     priority = 1000,
     config = function()
       -- vim.cmd([[colorscheme sonokai]])
+    end
+  },
+
+  -- surround
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+        require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
+        })
     end
   },
 
