@@ -24,6 +24,7 @@ M.setup = function()
       F = {"<cmd>Telescope git_files<CR>", "Fuzzy-find git files"},
       b = {"<cmd>Telescope buffers<CR>", "Fuzzy-find buffer"},
       F = {"<cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy-find in current buffer"},
+      d = {"<cmd>Telescope diagnostics<CR>", "Fuzzy-find diagnostics"},
     },
 
     d = {
