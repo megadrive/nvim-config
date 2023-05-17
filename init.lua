@@ -19,7 +19,18 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   -- github copilot
   {
-    'github/copilot.vim',
+    "zbirenbaum/copilot.lua",
+    dependencies = {
+      "zbirenbaum/copilot-cmp",
+    },
+    config = function()
+      require('copilot').setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+
+      require('copilot_cmp').setup()
+    end,
   },
 
   -- leap.nvim, easier movements
@@ -102,6 +113,7 @@ local plugins = {
     },
     config = function()
       local lsp = require("lsp-zero")
+      local cmp = require("cmp")
 
       -- lsp.preset("recommended")
       lsp.set_preferences({
@@ -126,6 +138,15 @@ local plugins = {
           {name = 'nvim_lsp', keyword_length = 1},
           {name = 'buffer', keyword_length = 1},
           {name = 'luasnip', keyword_length = 1},
+          {name = 'copilot'},
+        },
+        mapping = {
+          ['<CR>'] = cmp.mapping.confirm({
+            -- documentation says this is important.
+            -- I don't know why.
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false,
+          })
         }
       })
 
