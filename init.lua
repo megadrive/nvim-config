@@ -95,7 +95,7 @@ local plugins = {
   -- lsp
   {
     'VonHeikemen/lsp-zero.nvim',
-    branch = "v1.x",
+    branch = "v2.x",
     dependencies = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },
@@ -120,31 +120,20 @@ local plugins = {
 
       -- lsp.preset("recommended")
       lsp.set_preferences({
-        suggest_lsp_servers = true,
         setup_servers_on_start = true,
-        set_lsp_keymaps = true,
         configure_diagnostics = true, -- use trouble instead
-        cmp_capabilities = true,
         manage_nvim_cmp = true,
         call_servers = 'local',
-        sign_icons = {
-          error = 'E',
-          warn = 'W',
-          hint = 'H',
-          info = 'I'
-          -- error = '✘',
-          -- warn = '▲',
-          -- hint = '⚑',
-          -- info = ''
-        }
       })
+
+      lsp.default_keymaps()
 
       lsp.setup_nvim_cmp({
         sources = {
           {name = 'path'},
           {name = 'nvim_lsp', keyword_length = 1},
           {name = 'buffer', keyword_length = 1},
-          {name = 'luasnip', keyword_length = 1},
+          {name = 'luasnip', keyword_length = 2},
           {name = 'copilot'},
         },
         mapping = {
@@ -166,7 +155,12 @@ local plugins = {
         bind('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>')
       end)
 
-      lsp.nvim_workspace()
+      lsp.set_sign_icons({
+        error = 'E',
+        warn = 'W',
+        hint = 'H',
+        info = 'I',
+      })
 
       lsp.setup()
     end
