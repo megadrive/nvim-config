@@ -36,6 +36,9 @@ local plugins = {
   -- leap.nvim, easier movements
   {
     'ggandor/leap.nvim',
+    config = function()
+      require('leap').add_default_mappings()
+    end,
   },
 
   -- themes
@@ -120,15 +123,19 @@ local plugins = {
         suggest_lsp_servers = true,
         setup_servers_on_start = true,
         set_lsp_keymaps = true,
-        configure_diagnostics = false, -- use trouble instead
+        configure_diagnostics = true, -- use trouble instead
         cmp_capabilities = true,
         manage_nvim_cmp = true,
         call_servers = 'local',
         sign_icons = {
-          error = '✘',
-          warn = '▲',
-          hint = '⚑',
-          info = ''
+          error = 'E',
+          warn = 'W',
+          hint = 'H',
+          info = 'I'
+          -- error = '✘',
+          -- warn = '▲',
+          -- hint = '⚑',
+          -- info = ''
         }
       })
 
@@ -224,13 +231,13 @@ local plugins = {
   "nvim-tree/nvim-web-devicons",
 
   -- Diagnostics
-  {
-    "folke/trouble.nvim",
-    dependencies = {
-      { "folke/lsp-colors.nvim", config = true, },
-    },
-    config = true,
-  },
+  -- {
+  --   "folke/trouble.nvim",
+  --   dependencies = {
+  --     { "folke/lsp-colors.nvim", config = true, },
+  --   },
+  --   config = true,
+  -- },
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -298,15 +305,15 @@ local plugins = {
     dependencies = { 'nvim-lua/plenary.nvim', lazy = false },
     config = function()
       local actions = require("telescope.actions")
-      local trouble = require("trouble.providers.telescope")
+      -- local trouble = require("trouble.providers.telescope")
 
       local telescope = require("telescope")
 
       telescope.setup {
         defaults = {
           mappings = {
-            i = { ["<c-t>"] = trouble.open_with_trouble },
-            n = { ["<c-t>"] = trouble.open_with_trouble },
+            -- i = { ["<c-t>"] = trouble.open_with_trouble },
+            -- n = { ["<c-t>"] = trouble.open_with_trouble },
           },
         },
       }
