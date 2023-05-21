@@ -8,6 +8,8 @@ M.setup = function()
   set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
   set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
 
+  set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+
   local wk = require("which-key")
   wk.register({
     q = { "<cmd>db<CR>", "Close current buffer" },
