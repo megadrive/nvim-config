@@ -22,7 +22,7 @@ M.setup = function()
       f = { "<cmd>Telescope find_files<CR>", "Fuzzy-find all files" },
       F = { "<cmd>Telescope git_files<CR>", "Fuzzy-find git files" },
       b = { "<cmd>Telescope buffers<CR>", "Fuzzy-find buffer" },
-      F = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy-find in current buffer" },
+      B = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy-find in current buffer" },
       d = { "<cmd>Telescope diagnostics<CR>", "Fuzzy-find diagnostics" },
     },
 
@@ -38,9 +38,9 @@ M.setup = function()
   }, { prefix = '<leader>' })
 
   -- Trouble
-  local trouble_opts = { silent = true, noremap = true }
-  set("n", "<leader>tt", "<cmd>TroubleToggle<CR>", trouble_opts)
-  set("n", "<leader>tr", "<cmd>TroubleRefresh<CR>", trouble_opts)
+  -- local trouble_opts = { silent = true, noremap = true }
+  -- set("n", "<leader>tt", "<cmd>TroubleToggle<CR>", trouble_opts)
+  -- set("n", "<leader>tr", "<cmd>TroubleRefresh<CR>", trouble_opts)
 end
 
 return M

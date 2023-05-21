@@ -121,7 +121,7 @@ local plugins = {
       -- lsp.preset("recommended")
       lsp.set_preferences({
         setup_servers_on_start = true,
-        configure_diagnostics = true, -- use trouble instead
+        configure_diagnostics = true,
         manage_nvim_cmp = true,
         call_servers = 'local',
       })
@@ -137,12 +137,26 @@ local plugins = {
           {name = 'copilot'},
         },
         mapping = {
-          ['<CR>'] = cmp.mapping.confirm({
+          ['<Tab>'] = cmp.mapping.confirm({
             -- documentation says this is important.
             -- I don't know why.
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
-          })
+          }),
+          ['<C-j>'] = function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            else
+              fallback()
+            end
+          end,
+          ['<C-k>'] = function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            else
+              fallback()
+            end
+          end,
         }
       })
 
