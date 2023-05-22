@@ -47,7 +47,7 @@ local plugins = {
     lazy = false,
     priority = false,
     config = function()
-      vim.cmd[[colorscheme kanagawa]]
+      vim.cmd [[colorscheme kanagawa]]
     end,
   },
 
@@ -85,13 +85,12 @@ local plugins = {
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
     config = function()
-        require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
-        })
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
     end
   },
 
-  --
   -- lsp
   {
     'VonHeikemen/lsp-zero.nvim',
@@ -130,11 +129,11 @@ local plugins = {
 
       lsp.setup_nvim_cmp({
         sources = {
-          {name = 'path'},
-          {name = 'nvim_lsp', keyword_length = 1},
-          {name = 'buffer', keyword_length = 1},
-          {name = 'luasnip', keyword_length = 2},
-          {name = 'copilot'},
+          { name = 'path' },
+          { name = 'nvim_lsp', keyword_length = 1 },
+          { name = 'buffer',   keyword_length = 1 },
+          { name = 'luasnip',  keyword_length = 2 },
+          { name = 'copilot' },
         },
         mapping = {
           ['<Tab>'] = cmp.mapping.confirm({
@@ -185,7 +184,7 @@ local plugins = {
     dependencies = {
       'jose-elias-alvarez/null-ls.nvim',
     },
-    config = function ()
+    config = function()
       local prettier = require("prettier")
       prettier.setup({
         filetypes = {
@@ -236,18 +235,11 @@ local plugins = {
     end
   },
 
+  -- Devicons, used as a dependency for various plugins
   "nvim-tree/nvim-web-devicons",
 
-  -- Diagnostics
-  -- {
-  --   "folke/trouble.nvim",
-  --   dependencies = {
-  --     { "folke/lsp-colors.nvim", config = true, },
-  --   },
-  --   config = true,
-  -- },
-
-  { -- Highlight, edit, and navigate code
+  {
+    -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
@@ -270,15 +262,17 @@ local plugins = {
 
   -- Fancier statusline
   {
-    'nvim-lualine/lualine.nvim',
-    config = true
+    "ojroques/nvim-hardline",
+    config = true,
   },
 
+  -- colors and highlights
   {
     'NvChad/nvim-colorizer.lua',
     config = true,
   },
 
+  -- minimap
   {
     'gorbit99/codewindow.nvim',
     config = function()
