@@ -47,7 +47,7 @@ local plugins = {
     lazy = false,
     priority = false,
     config = function()
-      vim.cmd [[colorscheme kanagawa]]
+      -- vim.cmd [[colorscheme kanagawa]]
     end,
   },
 
@@ -66,7 +66,7 @@ local plugins = {
     lazy = false,
     priority = 1000,
     config = function()
-      -- vim.cmd([[colorscheme catppuccin]])
+      vim.cmd([[colorscheme catppuccin]])
     end
   },
 
@@ -313,10 +313,7 @@ local plugins = {
 
       telescope.setup {
         defaults = {
-          mappings = {
-            -- i = { ["<c-t>"] = trouble.open_with_trouble },
-            -- n = { ["<c-t>"] = trouble.open_with_trouble },
-          },
+          mappings = {},
         },
       }
     end,
