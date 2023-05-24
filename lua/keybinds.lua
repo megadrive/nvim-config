@@ -6,8 +6,6 @@ M.setup = function()
 
   local wk = require("which-key")
   wk.register({
-    q = { "<cmd>db<CR>", "Close current buffer" },
-    Q = { "<cmd>db|e#<CR>", "Close all other buffers" },
     p = {
       name = "Project",
       v = { "<cmd>Ex<CR>", "Open netrw" },
@@ -23,9 +21,9 @@ M.setup = function()
     },
 
     d = {
-      name = "Trouble diagnostics",
-      f = { "lua vim.diagnostic.goto_next()<CR>", "Diagnostic forward" },
-      b = { "lua vim.diagnostic.goto_prev()<CR>", "Diagnostic backward" },
+      name = "Diagnostics",
+      f = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Diagnostic forward" },
+      b = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Diagnostic backward" },
     },
 
     F = { "<cmd>LspZeroFormat<CR>", "LSP Format" },
