@@ -4,12 +4,6 @@ M.setup = function()
   local set = vim.keymap.set
   set("i", "jk", "<C-c>"); -- jk to leave insert mode
 
-  set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
-  set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
-  set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
-
-  set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
-
   local wk = require("which-key")
   wk.register({
     q = { "<cmd>db<CR>", "Close current buffer" },
@@ -32,17 +26,20 @@ M.setup = function()
       name = "Trouble diagnostics",
       f = { "lua vim.diagnostic.goto_next()<CR>", "Diagnostic forward" },
       b = { "lua vim.diagnostic.goto_prev()<CR>", "Diagnostic backward" },
-      t = { "<cmd>TroubleToggle<CR>", "Toggle Trouble" },
-      r = { "<cmd>TroubleRefresh<CR>", "Refresh Trouble" },
     },
 
     F = { "<cmd>LspZeroFormat<CR>", "LSP Format" },
   }, { prefix = '<leader>' })
 
-  -- Trouble
-  -- local trouble_opts = { silent = true, noremap = true }
-  -- set("n", "<leader>tt", "<cmd>TroubleToggle<CR>", trouble_opts)
-  -- set("n", "<leader>tr", "<cmd>TroubleRefresh<CR>", trouble_opts)
+  wk.register({
+    K = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" },
+    g = {
+      name = "Goto",
+      d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Go to definition" },
+      t = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "Go to type definition" },
+      i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Go to implementation" },
+    }
+  })
 end
 
 return M
