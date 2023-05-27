@@ -27,6 +27,10 @@ M.setup = function()
     },
 
     F = { "<cmd>LspZeroFormat<CR>", "LSP Format" },
+
+    w = {
+      "<C-w>", "Window",
+    },
   }, { prefix = '<leader>' })
 
   wk.register({
