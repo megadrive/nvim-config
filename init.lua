@@ -52,6 +52,15 @@ local plugins = {
   },
 
   {
+    "ayu-theme/ayu-vim",
+    lazy = false,
+    priority = false,
+    config = function()
+      -- vim.cmd [[colorscheme ayu]]
+    end,
+  },
+
+  {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
@@ -66,7 +75,7 @@ local plugins = {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme catppuccin]])
+      -- vim.cmd([[colorscheme catppuccin]])
     end
   },
 
@@ -77,6 +86,21 @@ local plugins = {
     config = function()
       -- vim.cmd([[colorscheme sonokai]])
     end
+  },
+
+  {
+    "hardhackerlabs/theme-vim",
+    name = "hardhacker",
+    lazy = false,
+    priority = 1000,
+    init = function()
+      vim.g.hardhacker_darker = 0
+      vim.g.hardhacker_hide_tilde = 1
+      vim.g.hardhacker_keyword_italic = 1
+    end,
+    config = function()
+      vim.cmd("colorscheme hardhacker")
+    end,
   },
 
   -- surround
@@ -273,16 +297,22 @@ local plugins = {
   },
 
   -- minimap
+  -- {
+  --   'gorbit99/codewindow.nvim',
+  --   config = function()
+  --     local codewindow = require('codewindow')
+  --     codewindow.setup({
+  --       auto_enable = true,
+  --       minimap_width = 4,
+  --       width_multiplier = 8,
+  --     })
+  --     codewindow.apply_default_keybinds()
+  --   end,
+  -- },
   {
-    'gorbit99/codewindow.nvim',
+    'dstein64/nvim-scrollview',
     config = function()
-      local codewindow = require('codewindow')
-      codewindow.setup({
-        auto_enable = true,
-        minimap_width = 4,
-        width_multiplier = 8,
-      })
-      codewindow.apply_default_keybinds()
+      require("scrollview").setup()
     end,
   },
 
