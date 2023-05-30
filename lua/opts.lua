@@ -31,8 +31,8 @@ M.setup = function()
   vim.opt.colorcolumn = "80"
 
   -- remap
-  vim.g.mapleader =  " "
-  vim.g.maplocalleader =  " "
+  vim.g.mapleader = " "
+  vim.g.maplocalleader = " "
 end
 
 return M

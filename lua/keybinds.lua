@@ -1,14 +1,15 @@
 local M = {}
 
+local set = vim.keymap.set
+local wk = require("which-key")
+
 M.setup = function()
-  local set = vim.keymap.set
   set("i", "jk", "<C-c>"); -- jk to leave insert mode
 
-  local wk = require("which-key")
   wk.register({
     p = {
       name = "Project",
-      v = { "<cmd>Ex<CR>", "Open netrw" },
+      v = { "<cmd>Ex<CR>", "Open NetRW" },
     },
 
     f = {
@@ -27,6 +28,19 @@ M.setup = function()
     },
 
     F = { "<cmd>LspZeroFormat<CR>", "LSP Format" },
+
+    h = {
+      name = "Harpoon",
+      a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add file to marks" },
+      l = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "List marks" },
+      n = { "<cmd>lua require('harpoon.ui').nav_next()<cr>", "Next mark" },
+      p = { "<cmd>lua require('harpoon.ui').nav_prev()<cr>", "Previous mark" },
+      c = {
+        name = "Clear all marks (confirm)",
+        c = { "<cmd>lua require('harpoon.mark').clear_all()<cr>", "Clear all marks" },
+      },
+      f = { "<cmd>Telescope harpoon marks<cr>", "Find marks" },
+    },
 
     w = {
       "<C-w>", "Window",
