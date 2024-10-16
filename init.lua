@@ -18,20 +18,20 @@ vim.opt.rtp:prepend(lazypath)
 -- install plugins
 local plugins = {
   -- github copilot
-  {
-    "zbirenbaum/copilot.lua",
-    dependencies = {
-      "zbirenbaum/copilot-cmp",
-    },
-    config = function()
-      require('copilot').setup({
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      })
-
-      require('copilot_cmp').setup()
-    end,
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   dependencies = {
+  --     "zbirenbaum/copilot-cmp",
+  --   },
+  --   config = function()
+  --     require('copilot').setup({
+  --       suggestion = { enabled = false },
+  --       panel = { enabled = false },
+  --     })
+  --
+  --     require('copilot_cmp').setup()
+  --   end,
+  -- },
 
   -- leap.nvim, easier movements
   {
@@ -319,7 +319,6 @@ local plugins = {
   -- Add indentation guides even on blank lines
   {
     'lukas-reineke/indent-blankline.nvim',
-    config = true,
   },
 
   -- "<leader>gc" to comment visual regions/lines
@@ -336,7 +335,7 @@ local plugins = {
     branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim', lazy = false },
     config = function()
-      local actions = require("telescope.actions")
+      -- local actions = require("telescope.actions")
 
       local telescope = require("telescope")
 
@@ -353,7 +352,9 @@ local plugins = {
     config = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
-      require("which-key").setup()
+      require("which-key").setup({
+        preset = "modern"
+      })
     end
   },
 
@@ -370,6 +371,11 @@ local plugins = {
       require("harpoon").setup()
       require("telescope").load_extension("harpoon")
     end,
+  },
+
+  -- markdown support
+  {
+    "OXY2DEV/markview.nvim",
   },
 }
 
